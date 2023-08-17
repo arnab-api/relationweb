@@ -115,9 +115,10 @@ For example, the fact that Miles Davis is a trumpet player can be written as a <
 connecting a <b>subject</b> (<i>Miles Davis</i>&nbsp;) to an <b>object</b> (<i>trumpet</i>&nbsp;). 
 </p>
 <p>
-One might expect how a language model decodes a relation to be a sequence of complex, non-linear spanning multiple layers. However,
+One might expect how a language model decodes a relation to be a sequence of complex, non-linear computation spanning multiple layers. However,
 in this paper we show that for a subset of relations this (highly non-linear) decoding procedure can be well-approximated by a single <b>linear transformation</b> (LRE) on
-the subject representation.
+the subject representation <b style="font-family:'Times New Roman'; font-size:19px">s</b> after some intermediate layer.
+
 </p>
 </div><!--card-block-->
 </div><!--card-->
@@ -130,15 +131,15 @@ the subject representation.
   <img src="images/Paper/schematic-wide.png" style="width:100%">
   <figcaption>
     In an LM relations such as <em>plays the instrument</em> can be well-approximated by a linear function
-    <b style="font-family:'Times New Roman'; font-size:17px"><i>R</i></b> that maps subject representation
-    <b style="font-family:'Times New Roman'; font-size:17px">s</b> to object representation 
-    <b style="font-family:'Times New Roman'; font-size:17px">o</b>, which is then directy decoded.
+    <b style="font-family:'Times New Roman'; font-size:19px"><i>R</i></b> that maps subject representation
+    <b style="font-family:'Times New Roman'; font-size:19px">s</b> to object representation 
+    <b style="font-family:'Times New Roman'; font-size:19px">o</b>, which is then directy decoded.
 </figure>
 
 <h2>How to get the LRE approximating a relation decoding?</h2>
 
 <p>LRE in form of <span style="font-family:'Times New Roman'; font-size:19px">LRE(<b>s</b>) = W<b>s</b> + b</span>
-can be obtained by first order Taylor series approximation to the LM computation, where <span style="font-family:'Times New Roman'; font-size:19px">W</span>
+can be obtained by taking a first order Taylor series approximation to the LM computation, where <span style="font-family:'Times New Roman'; font-size:19px">W</span>
 is the local derivative (Jacobian) of the LM computation at some subject representation <span style="font-family:'Times New Roman'; font-size:19px"><b>s<sub>0</sub></b></span>.
 Kindly refer to our paper for further details.
 
@@ -170,17 +171,17 @@ Kindly refer to our paper for further details.
 <h3 class="card-header">bibliography</h3>
 <div class="card-block">
 <p style="text-indent: -3em; margin-left: 3em;" class="card-text clickselect">
-Kevin Meng, Arnab Sen Sharma, Alex Andonian, Yonatan Belinkov, and David Bau. "<em>Mass Editing Memory in a Transformer.</em>" arXiv preprint <nobr><a href="https://arxiv.org/abs/2210.07229">arXiv:2210.07229</a> (2022).</nobr>
+  Evan Hernandez, Arnab Sen Sharma, Tal Haklay, Kevin Meng, Martin Wattenberg, Yonatan Belinkov, and David Bau. "<em>Linearity of Relation Decoding in Transformer Language Models.</em>" arXiv preprint <nobr><a href="https://arxiv.org/abs/________">arXiv:_________</a> (2023).</nobr>
 </p>
 </div>
 <h3 class="card-header">bibtex</h3>
 <div class="card-block">
 <pre class="card-text clickselect">
-@article{meng2022memit,
-  title={Mass Editing Memory in a Transformer},
-  author={Kevin Meng and Sen Sharma, Arnab and Alex Andonian and Yonatan Belinkov and David Bau},
-  journal={arXiv preprint arXiv:2210.07229},
-  year={2022}
+@article{hernandez2023linear,
+  title={Linearity of Relation Decoding in Transformer Language Models},
+  author={Hernandez, Evan and Sen Sharma, Arnab and Haklay, Tal and Meng, Kevin and Wattenberg, Martin and Andreas, Jacob and Yonatan Belinkov and David Bau},
+  journal={arXiv preprint arXiv:______},
+  year={2023}
 }
 </pre>
 </div>
