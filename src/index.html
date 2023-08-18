@@ -160,18 +160,37 @@
 
                 <h2>How to get the LRE approximating a relation decoding?</h2>
 
-                <p>LRE in form of <span style="font-family:'Times New Roman'; font-size:19px">LRE(<b>s</b>) = W<b>s</b>
-                        +
-                        b</span>
+                <p style="text-align: justify;">LRE in form of
+                    <span style="font-family:'Times New Roman'; font-size:19px">
+                        LRE(<b>s</b>) = <i>W</i><b>s</b> + <i>b</i>
+                    </span>
                     can be obtained by taking a first order Taylor series approximation to the LM computation, where
-                    <span style="font-family:'Times New Roman'; font-size:19px">W</span>
-                    is the local derivative (Jacobian) of the LM computation at some subject representation <span
-                        style="font-family:'Times New Roman'; font-size:19px"><b>s<sub>0</sub></b></span>.
+                    <span style="font-family:'Times New Roman'; font-size:20px"><i>W</i></span>
+                    is the local derivative (Jacobian) of the LM computation at some subject representation
+                    <span style="font-family:'Times New Roman'; font-size:19px"><b>s<sub>0</sub></b></span>.
+                    For a range of relations we find that averaging the estimation of
+                    <span style="font-family:'Times New Roman'; font-size:19px">LRE</span>
+                    parameters on just 5 samples is enough to get a faithful approximation of LM decoding.
+
+                <figure>
+                    <img src="images/Paper/LRE_eqn.png" class="center_image" style="width: 30%;">
+                </figure>
+
+                <p style="text-align: justify;">
+                    Here
+                    <span style="font-family:'Times New Roman'; font-size:20px"><i>F</i></span>
+                    represents how LM obtains the object representation
+                    <span style="font-family:'Times New Roman'; font-size:19px"><b>o</b></span>
+                    from the subject representation
+                    <span style="font-family:'Times New Roman'; font-size:19px"><b>s</b></span>
+                    introduced within a textual context
+                    <span style="font-family:'Times New Roman'; font-size:20px"><i>c</i></span>.
                     Kindly refer to our paper for further details.
+                </p>
 
                 <h2>How well is the LRE approximation?</h2>
 
-                <p>
+                <p style="text-align: justify;">
                     We evaluate the LRE approximations on a set of 47 relations spanning 4 categories:
                     <em>factual associations</em>, <em>commonsense knowledge</em>, <em>implicit biases</em>, and
                     <em>linguistic
@@ -180,7 +199,7 @@
                     majority
                     of the subjects in the test set.
                 </p>
-                <p>
+                <p style="text-align: justify;">
                     We also identify a set of relations where we couldn't find a good LRE approximations. For most of
                     these
                     relations
