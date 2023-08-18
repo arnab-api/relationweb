@@ -1,214 +1,248 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<title>Linearity of Relation Decoding in Transformer Language Models</title>
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="description" content="Updating thousands of memories in GPT by directly calculating parameter changes." />
-<meta property="og:title" content="Mass Editing Memory in a Transformer" />
-<meta property="og:url" content="https://memit.baulab.info/" />
-<meta property="og:image" content="https://memit.baulab.info/images/memit-thumb.png" />
-<meta property="og:description" content="Updating thousands of memories in GPT by directly calculating parameter changes." />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" /> 
-<meta name="twitter:title" content="Mass Editing Memory in a Transformer" />
-<meta name="twitter:description" content="Updating thousands of memories in GPT by directly calculating parameter changes." />
-<meta name="twitter:image" content="https://memit.baulab.info/images/memit-thumb.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+    <title>Linearity of Relation Decoding in Transformer Language Models</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description"
+        content="Updating thousands of memories in GPT by directly calculating parameter changes." />
+    <meta property="og:title" content="Mass Editing Memory in a Transformer" />
+    <meta property="og:url" content="https://memit.baulab.info/" />
+    <meta property="og:image" content="https://memit.baulab.info/images/memit-thumb.png" />
+    <meta property="og:description"
+        content="Updating thousands of memories in GPT by directly calculating parameter changes." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mass Editing Memory in a Transformer" />
+    <meta name="twitter:description"
+        content="Updating thousands of memories in GPT by directly calculating parameter changes." />
+    <meta name="twitter:image" content="https://memit.baulab.info/images/memit-thumb.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-<style>
-.relatedthumb {
-  float:left; width: 200px; margin: 3px 10px 7px 0;
-}
-.relatedblock {
-  clear: both;
-  display: inline-block;
-}
-.bold-sc {
-  font-variant: small-caps;
-  font-weight: bold;
-}
-.cite, .citegroup {
-  margin-bottom: 8px;
-}
-:target {
-  background-color: yellow;
-}
-</style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FD12LWN557"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
-</script>
+    <style>
+        .relatedthumb {
+            float: left;
+            width: 200px;
+            margin: 3px 10px 7px 0;
+        }
+
+        .relatedblock {
+            clear: both;
+            display: inline-block;
+        }
+
+        .bold-sc {
+            font-variant: small-caps;
+            font-weight: bold;
+        }
+
+        .cite,
+        .citegroup {
+            margin-bottom: 8px;
+        }
+
+        :target {
+            background-color: yellow;
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FD12LWN557"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
+    </script>
 
 </head>
-<body class="nd-docs">
-<div class="nd-pageheader">
- <div class="container">
- <h1 class="lead">
- <nobr class="widenobr">Linearity of Relation Decoding in </nobr>
- <nobr class="widenobr">Transformer LMs</nobr>
- </h1>
-<address>
-  <nobr><a href="https://evandez.com/" target="_blank"
-  >Evan Hernandez</a><sup>1</sup>,</nobr>
-  <nobr><a href="https://arnab-api.github.io/" target="_blank"
-  >Arnab Sen Sharma</a><sup>2</sup>,</nobr>
-  <nobr><a href="https://github.com/TalHaklay" target="_blank"
-  >Tal Haklay</a><sup>3</sup>,</nobr>
-  <nobr><a href="https://mengk.me/" target="_blank"
-  >Kevin Meng</a><sup>1</sup>,</nobr>
-  <nobr><a href="https://www.bewitched.com/" target="_blank"
-  >Martin Wattenberg</a><sup>4</sup>,</nobr>
-  <nobr><a href="https://www.mit.edu/~jda/" target="_blank"
-  >Jacob Andreas</a><sup>1</sup>,</nobr>
-  <nobr><a href="https://www.cs.technion.ac.il/~belinkov/" target="_blank"
-  >Yonatan Belinkov</a><sup>3</sup>,</nobr>
-  <nobr><a href="https://baulab.info/" target="_blank"
-  >David Bau</a><sup>2</sup></nobr>
- <br>
-  <nobr><sup>1</sup><a href="https://www.csail.mit.edu/" target="_blank"
-  >MIT CSAIL</a>,</nobr>
-  <nobr><sup>2</sup><a href="https://khoury.northeastern.edu/" target="_blank"
-  >Northeastern University</a>,</nobr>
-  <nobr><sup>3</sup><a href="https://www.cs.technion.ac.il/" target="_blank"
-  >Technion - IIT</a></nobr>
-</address>
- </div>
-</div><!-- end nd-pageheader -->
 
-<div class="container">
-<div class="row justify-content-center" style="margin-bottom: 20px">
-<!-- <p class="text-center">
+<body class="nd-docs">
+    <div class="nd-pageheader">
+        <div class="container">
+            <h1 class="lead">
+                <nobr class="widenobr">Linearity of Relation Decoding in </nobr>
+                <nobr class="widenobr">Transformer LMs</nobr>
+            </h1>
+            <address>
+                <nobr><a href="https://evandez.com/" target="_blank">Evan Hernandez</a><sup>1</sup>,</nobr>
+                <nobr><a href="https://arnab-api.github.io/" target="_blank">Arnab Sen Sharma</a><sup>2</sup>,</nobr>
+                <nobr><a href="https://github.com/TalHaklay" target="_blank">Tal Haklay</a><sup>3</sup>,</nobr>
+                <nobr><a href="https://mengk.me/" target="_blank">Kevin Meng</a><sup>1</sup>,</nobr>
+                <nobr><a href="https://www.bewitched.com/" target="_blank">Martin Wattenberg</a><sup>4</sup>,</nobr>
+                <nobr><a href="https://www.mit.edu/~jda/" target="_blank">Jacob Andreas</a><sup>1</sup>,</nobr>
+                <nobr><a href="https://www.cs.technion.ac.il/~belinkov/" target="_blank">Yonatan
+                        Belinkov</a><sup>3</sup>,
+                </nobr>
+                <nobr><a href="https://baulab.info/" target="_blank">David Bau</a><sup>2</sup></nobr>
+                <br>
+                <nobr><sup>1</sup><a href="https://www.csail.mit.edu/" target="_blank">MIT CSAIL</a>,</nobr>
+                <nobr><sup>2</sup><a href="https://khoury.northeastern.edu/" target="_blank">Northeastern
+                        University</a>,</nobr>
+                <nobr><sup>3</sup><a href="https://www.cs.technion.ac.il/" target="_blank">Technion - IIT</a></nobr>
+            </address>
+        </div>
+    </div><!-- end nd-pageheader -->
+
+    <div class="container">
+        <div class="row justify-content-center" style="margin-bottom: 20px">
+            <!-- <p class="text-center">
 <a href="https://memit.baulab.us/"
    >New!  Try interacting with a MEMIT-edited GPT to see the effect of inserting hundreds of memories.</a>
 </p> -->
-</div>
-<div class="row justify-content-center text-center">
+        </div>
+        <div class="row justify-content-center text-center">
 
-<p>
-<a href="arxiv_link" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/paper-thumb.jpg" style="border:1px solid; margin: 0 38px;" alt="ArXiv Preprint thumbnail" data-nothumb=""><br>ArXiv<br>Preprint</a>
-<a href="nolink" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/code-thumb.png" style="border:1px solid; margin: 0 38px;" alt="Github code thumbnail" data-nothumb=""><br>Source Code<br><span style="color:red">upcoming!</span></a>
-<a href="data" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/data-thumb.png" style="border:1px solid; margin: 0 38px;" alt="Dataset thumbnail" data-nothumb=""><br>Dataset</a>
-</p>
+            <p>
+                <a href="arxiv_link" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78"
+                        src="images/paper-thumb.jpg" style="border:1px solid; margin: 0 38px;"
+                        alt="ArXiv Preprint thumbnail" data-nothumb=""><br>ArXiv<br>Preprint</a>
+                <a href="nolink" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78"
+                        src="images/code-thumb.png" style="border:1px solid; margin: 0 38px;"
+                        alt="Github code thumbnail" data-nothumb=""><br>Source Code<br><span
+                        style="color:red">upcoming!</span></a>
+                <a href="data" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78"
+                        src="images/data-thumb.png" style="border:1px solid; margin: 0 38px;" alt="Dataset thumbnail"
+                        data-nothumb=""><br>Dataset</a>
+            </p>
 
-<div class="card" style="max-width: 1020px;">
-<div class="card-block">
-<h3>How do Transformer LMs Decode Relations?</h3>
-<p>
-<p>Much of the knowledge contained in neural language models may be expressed in terms of relations. 
-For example, the fact that Miles Davis is a trumpet player can be written as a <b>relation</b> (<i>plays the trumpet</i>&nbsp;)
-connecting a <b>subject</b> (<i>Miles Davis</i>&nbsp;) to an <b>object</b> (<i>trumpet</i>&nbsp;). 
-</p>
-<p>
-One might expect how a language model decodes a relation to be a sequence of complex, non-linear computation spanning multiple layers. However,
-in this paper we show that for a subset of relations this (highly non-linear) decoding procedure can be well-approximated by a single <b>linear transformation</b> (LRE) on
-the subject representation <b style="font-family:'Times New Roman'; font-size:19px">s</b> after some intermediate layer.
+            <div class="card" style="max-width: 1020px;">
+                <div class="card-block">
+                    <h3>How do Transformer LMs Decode Relations?</h3>
+                    <p>
+                    <p>Much of the knowledge contained in neural language models may be expressed in terms of relations.
+                        For example, the fact that Miles Davis is a trumpet player can be written as a <b>relation</b>
+                        (<i>plays the
+                            trumpet</i>&nbsp;)
+                        connecting a <b>subject</b> (<i>Miles Davis</i>&nbsp;) to an <b>object</b>
+                        (<i>trumpet</i>&nbsp;).
+                    </p>
+                    <p>
+                        One might expect how a language model decodes a relation to be a sequence of complex, non-linear
+                        computation spanning multiple layers. However, in this paper we show that for a subset of
+                        relations
+                        this (highly non-linear) decoding procedure can be well-approximated by a single <b>linear
+                            transformation</b> (LRE) on the subject representation <b
+                            style="font-family:'Times New Roman'; font-size:19px">s</b> after some intermediate layer.
 
-</p>
-</div><!--card-block-->
-</div><!--card-->
+                    </p>
+                </div><!--card-block-->
+            </div><!--card-->
 
-</div><!--row-->
+        </div><!--row-->
 
-<div class="row">
-<div class="col">
-<figure class="center_image" style="margin-top: 30px">
-  <img src="images/Paper/schematic-wide.png" style="width:100%">
-  <figcaption>
-    In an LM relations such as <em>plays the instrument</em> can be well-approximated by a linear function
-    <b style="font-family:'Times New Roman'; font-size:19px"><i>R</i></b> that maps subject representation
-    <b style="font-family:'Times New Roman'; font-size:19px">s</b> to object representation 
-    <b style="font-family:'Times New Roman'; font-size:19px">o</b>, which is then directy decoded.
-</figure>
+        <div class="row">
+            <div class="col">
+                <figure class="center_image" style="margin-top: 30px">
+                    <img src="images/Paper/schematic-wide.png" style="width:100%">
+                    <figcaption>
+                        In an LM relations such as <em>plays the instrument</em> can be well-approximated by a linear
+                        function
+                        <b style="font-family:'Times New Roman'; font-size:19px"><i>R</i></b> that maps subject
+                        representation
+                        <b style="font-family:'Times New Roman'; font-size:19px">s</b> to object representation
+                        <b style="font-family:'Times New Roman'; font-size:19px">o</b>, which is then directy decoded.
+                </figure>
 
-<h2>How to get the LRE approximating a relation decoding?</h2>
+                <h2>How to get the LRE approximating a relation decoding?</h2>
 
-<p>LRE in form of <span style="font-family:'Times New Roman'; font-size:19px">LRE(<b>s</b>) = W<b>s</b> + b</span>
-can be obtained by taking a first order Taylor series approximation to the LM computation, where <span style="font-family:'Times New Roman'; font-size:19px">W</span>
-is the local derivative (Jacobian) of the LM computation at some subject representation <span style="font-family:'Times New Roman'; font-size:19px"><b>s<sub>0</sub></b></span>.
-Kindly refer to our paper for further details.
+                <p>LRE in form of <span style="font-family:'Times New Roman'; font-size:19px">LRE(<b>s</b>) = W<b>s</b>
+                        +
+                        b</span>
+                    can be obtained by taking a first order Taylor series approximation to the LM computation, where
+                    <span style="font-family:'Times New Roman'; font-size:19px">W</span>
+                    is the local derivative (Jacobian) of the LM computation at some subject representation <span
+                        style="font-family:'Times New Roman'; font-size:19px"><b>s<sub>0</sub></b></span>.
+                    Kindly refer to our paper for further details.
 
-<h2>How well is the LRE approximation?</h2>
+                <h2>How well is the LRE approximation?</h2>
 
-<p>
-  We evaluate the LRE approximations on a set of 47 relations spanning 4 categories: 
-  <em>factual associations</em>, <em>commonsense knowledge</em>, <em>implicit biases</em>, and <em>linguistic knowledge</em>.
-  We find that for almost half of the relations LRE faithfully recovers subject-object mappings for a majority
-  of the subjects in the test set. 
-</p>
-<p>
-  We also identify a set of relations where we couldn't find a good LRE approximations. For most of these relations
-  the range was names of people and companies. We think the range for this relations are so large that LM cannot 
-  encode them in a single state, and relies on a more complex non-linear decoding procedure.
-</p>
+                <p>
+                    We evaluate the LRE approximations on a set of 47 relations spanning 4 categories:
+                    <em>factual associations</em>, <em>commonsense knowledge</em>, <em>implicit biases</em>, and
+                    <em>linguistic
+                        knowledge</em>.
+                    We find that for almost half of the relations LRE faithfully recovers subject-object mappings for a
+                    majority
+                    of the subjects in the test set.
+                </p>
+                <p>
+                    We also identify a set of relations where we couldn't find a good LRE approximations. For most of
+                    these
+                    relations
+                    the range was names of people and companies. We think the range for this relations are so large that
+                    LM cannot
+                    encode them in a single state, and relies on a more complex non-linear decoding procedure.
+                </p>
 
-<figure>
-  <img src="images/Paper/faithfulness_relationwise.png" class="center_image" style="width: 50%;">
-</figure>
+                <figure>
+                    <img src="images/Paper/faithfulness_relationwise.png" class="center_image" style="width: 50%;">
+                </figure>
 
 
-<h2>How to cite</h2>
+                <h2>How to cite</h2>
 
-<p>This work is not yet peer-reviewed. The preprint can be cited as follows.
-</p>
+                <p>This work is not yet peer-reviewed. The preprint can be cited as follows.
+                </p>
 
-<div class="card">
-<h3 class="card-header">bibliography</h3>
-<div class="card-block">
-<p style="text-indent: -3em; margin-left: 3em;" class="card-text clickselect">
-  Evan Hernandez, Arnab Sen Sharma, Tal Haklay, Kevin Meng, Martin Wattenberg, Yonatan Belinkov, and David Bau. "<em>Linearity of Relation Decoding in Transformer Language Models.</em>" arXiv preprint <nobr><a href="https://arxiv.org/abs/________">arXiv:_________</a> (2023).</nobr>
-</p>
-</div>
-<h3 class="card-header">bibtex</h3>
-<div class="card-block">
-<pre class="card-text clickselect">
+                <div class="card">
+                    <h3 class="card-header">bibliography</h3>
+                    <div class="card-block">
+                        <p style="text-indent: -3em; margin-left: 3em;" class="card-text clickselect">
+                            Evan Hernandez, Arnab Sen Sharma, Tal Haklay, Kevin Meng, Martin Wattenberg, Yonatan
+                            Belinkov, and David Bau. "<em>Linearity of Relation Decoding in Transformer Language
+                                Models.</em>" arXiv preprint <nobr><a
+                                    href="https://arxiv.org/abs/________">arXiv:_________</a> (2023).</nobr>
+                        </p>
+                    </div>
+                    <h3 class="card-header">bibtex</h3>
+                    <div class="card-block">
+                        <pre class="card-text clickselect">
 @article{hernandez2023linear,
-  title={Linearity of Relation Decoding in Transformer Language Models},
-  author={Hernandez, Evan and Sen Sharma, Arnab and Haklay, Tal and Meng, Kevin and Wattenberg, Martin and Andreas, Jacob and Yonatan Belinkov and David Bau},
-  journal={arXiv preprint arXiv:______},
-  year={2023}
+    title={Linearity of Relation Decoding in Transformer Language Models},
+    author={Hernandez, Evan and Sen Sharma, Arnab and Haklay, Tal and Meng, Kevin and Wattenberg, Martin and Andreas, Jacob and Yonatan Belinkov and David Bau},
+    journal={arXiv preprint arXiv:______},
+    year={2023}
 }
 </pre>
-</div>
-</div>
-</p>
+                    </div>
+                </div>
+                </p>
 
-</div>
-</div><!--row -->
-</div> <!-- container -->
+            </div>
+        </div><!--row -->
+    </div> <!-- container -->
 
-<footer class="nd-pagefooter">
-  <div class="row">
-    <div class="col-6 col-md text-center">
-      <a href="https://baulab.info/">About the Bau Lab</a>
-    </div>
-  </div>
-</footer>
+    <footer class="nd-pagefooter">
+        <div class="row">
+            <div class="col-6 col-md text-center">
+                <a href="https://baulab.info/">About the Bau Lab</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 <script>
-$(document).on('click', '.clickselect', function(ev) {
-  var range = document.createRange();
-  range.selectNodeContents(this);
-  var sel = window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(range);
-});
+    $(document).on('click', '.clickselect', function (ev) {
+        var range = document.createRange();
+        range.selectNodeContents(this);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    });
 </script>
-</html>
 
+</html>
