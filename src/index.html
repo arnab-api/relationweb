@@ -5,18 +5,18 @@
     <title>Linearity of Relation Decoding in Transformer Language Models</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description"
-        content="Updating thousands of memories in GPT by directly calculating parameter changes." />
-    <meta property="og:title" content="Mass Editing Memory in a Transformer" />
-    <meta property="og:url" content="https://memit.baulab.info/" />
-    <meta property="og:image" content="https://memit.baulab.info/images/memit-thumb.png" />
+        content="Approximating relation decoding in transormer LMs as simple linear transformations on the subject token." />
+    <meta property="og:title" content="Linearity of Relation Decoding in Transformer Language Models" />
+    <meta property="og:url" content="https://lre.baulab.info/" />
+    <meta property="og:image" content="https://lre.baulab.info/images/lre-thumb.png" />
     <meta property="og:description"
-        content="Updating thousands of memories in GPT by directly calculating parameter changes." />
+        content="Approximating relation decoding in transormer LMs as simple linear transformations on the subject token." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Mass Editing Memory in a Transformer" />
+    <meta name="twitter:title" content="Linearity of Relation Decoding in Transformer Language Models" />
     <meta name="twitter:description"
         content="Updating thousands of memories in GPT by directly calculating parameter changes." />
-    <meta name="twitter:image" content="https://memit.baulab.info/images/memit-thumb.png" />
+    <meta name="twitter:image" content="https://lre.baulab.info/images/lre-thumb.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -31,9 +31,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
         .relatedthumb {
@@ -100,8 +97,8 @@
     <div class="container">
         <div class="row justify-content-center" style="margin-bottom: 20px">
             <!-- <p class="text-center">
-<a href="https://memit.baulab.us/"
-   >New!  Try interacting with a MEMIT-edited GPT to see the effect of inserting hundreds of memories.</a>
+<a href="https://lre.baulab.us/"
+   >New!  Try interacting with a lre-edited GPT to see the effect of inserting hundreds of memories.</a>
 </p> -->
         </div>
         <div class="row justify-content-center text-center">
@@ -160,8 +157,8 @@
 
                 <h2>How to get the LRE approximating a relation decoding?</h2>
 
-                <p style="text-align: justify;">LRE in form of
-                    <span style="font-family:'Times New Roman'; font-size:19px">
+                <p style="text-align: justify;">A linear approximation in form of
+                    <span style="font-family:'Times New Roman'; font-size:20px">
                         LRE(<b>s</b>) = <i>W</i><b>s</b> + <i>b</i>
                     </span>
                     can be obtained by taking a first order Taylor series approximation to the LM computation, where
@@ -209,7 +206,7 @@
                 </p>
 
                 <figure>
-                    <img src="images/Paper/faithfulness_relationwise.png" class="center_image" style="width: 50%;">
+                    <img src="images/Paper/faithfulness_relationwise.png" class="center_image" style="width: 40%;">
                 </figure>
 
 
@@ -225,17 +222,19 @@
                             Evan Hernandez, Arnab Sen Sharma, Tal Haklay, Kevin Meng, Martin Wattenberg, Yonatan
                             Belinkov, and David Bau. "<em>Linearity of Relation Decoding in Transformer Language
                                 Models.</em>" arXiv preprint <nobr><a
-                                    href="https://arxiv.org/abs/________">arXiv:_________</a> (2023).</nobr>
+                                    href="https://arxiv.org/abs/2308.09124">arXiv:2308.09124</a> (2023).</nobr>
                         </p>
                     </div>
                     <h3 class="card-header">bibtex</h3>
                     <div class="card-block">
                         <pre class="card-text clickselect">
-@article{hernandez2023linear,
-    title={Linearity of Relation Decoding in Transformer Language Models},
-    author={Hernandez, Evan and Sen Sharma, Arnab and Haklay, Tal and Meng, Kevin and Wattenberg, Martin and Andreas, Jacob and Yonatan Belinkov and David Bau},
-    journal={arXiv preprint arXiv:______},
-    year={2023}
+@article{hernandez2023linearity,
+    title={Linearity of Relation Decoding in Transformer Language Models}, 
+    author={Evan Hernandez and Arnab Sen Sharma and Tal Haklay and Kevin Meng and Martin Wattenberg and Jacob Andreas and Yonatan Belinkov and David Bau},
+    year={2023},
+    eprint={2308.09124},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
 }
 </pre>
                     </div>
