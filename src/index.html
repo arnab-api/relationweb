@@ -105,8 +105,8 @@
         <div class="row justify-content-center text-center">
 
             <p>
-                <a href="https://arxiv.org/pdf/2308.09124.pdf" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78"
-                        src="images/paper-thumb.jpg" style="border:1px solid; margin: 0 38px;"
+                <a href="https://arxiv.org/pdf/2308.09124.pdf" class="d-inline-block p-3 align-top" target="_blank"><img
+                        height="100" width="78" src="images/paper-thumb.jpg" style="border:1px solid; margin: 0 38px;"
                         alt="ArXiv Preprint thumbnail" data-nothumb=""><br>ArXiv<br>Preprint</a>
                 <a href="" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78"
                         src="images/code-thumb.png" style="border:1px solid; margin: 0 38px;"
@@ -124,7 +124,7 @@
                         expressed in terms of relations.
                         For example, the fact that Miles Davis is a trumpet player can be written as a <b>relation</b>
                         (<i>plays the
-                            trumpet</i>&nbsp;)
+                            instrument</i>&nbsp;)
                         connecting a <b>subject</b> (<i>Miles Davis</i>&nbsp;) to an <b>object</b>
                         (<i>trumpet</i>&nbsp;).
                     </p>
@@ -154,6 +154,7 @@
                         representation
                         <b style="font-family:'Times New Roman'; font-size:19px">s</b> to object representation
                         <b style="font-family:'Times New Roman'; font-size:19px">o</b>, which is then directy decoded.
+                    </figcaption>
                 </figure>
 
                 <h2>How to get the LRE approximating a relation decoding?</h2>
@@ -208,6 +209,25 @@
 
                 <figure>
                     <img src="images/Paper/faithfulness_relationwise.png" class="center_image" style="width: 40%;">
+                </figure>
+
+                <h2>Attribute Lens</h2>
+                Attribute Lens, which is motivated by the idea that a hidden state
+                <span style="font-family:'Times New Roman'; font-size:20px"><b>h</b></span>
+                may contain pieces of information beyond the prediction of the immediate next token. And, an
+                <span style="font-family:'Times New Roman'; font-size:19px">LRE</span>
+                can be used to extract a certain attribute from
+                <span style="font-family:'Times New Roman'; font-size:20px"><b>h</b></span>
+                without relevant textual context.
+
+                <figure>
+                    <img src="images/Paper/attribute_lens.png" class="center_image" style="width: 80%;">
+                    <figcaption>
+                        <span style="font-family:'Times New Roman'; font-size:16px">LRE</span>
+                        approximating the relation <em>country capital</em> applied on hidden state
+                        <b style="font-family:'Times New Roman'; font-size:16px">h</b>
+                        after different layers in different token positions.
+                    </figcaption>
                 </figure>
 
 
